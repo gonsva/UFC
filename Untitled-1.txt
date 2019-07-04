@@ -1,0 +1,59 @@
+ parsedData="";
+    const request = new XMLHttpRequest();
+    request.onload = function(){
+        parsedData = JSON.parse(request.responseText);
+        console.log("DATA:", parsedData.grappling_accuracy);
+        var element=document.createElement("H1");
+        element.innerHTML=parsedData.grappling_accuracy;
+        document.body.appendChild(element);
+        //alert(parsedData.grappling_accuracy)
+    }
+    request.open("GET", "http://localhost:8080/datasearch/" + a);
+    console.log("received")
+    request.send();
+    console.log("sent");
+    
+ }
+
+
+ <textarea class="commentbox" type="text "rows="4" cols="40" style="background-color: rgb(201, 201, 201)" id="display"></textarea>
+<div class="stats" align="right">
+<!-- <form class="stats" action="http://localhost:8080/dataentry" method="post">  -->
+
+<textarea class="opacity" id="title" type="text "rows="2" cols="40" style="background-color: rgb(201, 201, 201)" name="Feedback"  onkeyup="Allow()" value="COMMENTS" style="text-align:left">Enter Comments</textarea>
+<p></p>
+<input type="text" name="usrname" class="btn btn-secondary btn-sm" value="ENTER NAME" style="text-align:left" onclick="insert()"/> 
+<input type="submit" class="btn btn-secondary btn-sm" value="SUBMIT" onclick="insert()" /></form>
+
+
+
+<script type="text/javascript">
+
+var titles = [];
+var titleInput = document.getElementById("title");
+var messageBox = document.getElementById("display");
+
+function Allow()
+{
+if (!user.title.value.match(/[a-zA-Z]$/) && user.title.value !="")
+{
+user.title.value="";
+alert("Please Enter only alphabets");
+}
+
+window.location.reload()
+}
+
+function insert () {
+titles.push(titleInput.value);
+clearAndShow();
+}
+
+function clearAndShow () 
+{
+titleInput.value = "";
+messageBox.innerHTML = "";
+messageBox.innerHTML += " " + titles.join("<br/> ") + "<br/>";
+}
+
+</script>

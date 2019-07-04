@@ -1,3 +1,5 @@
+alter table table_fstats rename column Fid TO FID;
+
 drop table stats;
 insert into fstats values(7, 7, '51%', '47%', 22, 1, 0);
 
